@@ -13,8 +13,27 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const teams = [
-	{ name: 'Gentle Mates', imagePath: 'images/teams/gentle_mates.png' },
-	{ name: 'Karmine Corp', imagePath: 'images/teams/karmine_corp.png' },
+    { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png'},
+    { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png'},
+    { name: 'EDward Gaming', imagePath: 'images/teams/edward_gaming.png'},
+    { name: 'Fnatic', imagePath: 'images/teams/fnatic.png'},
+    { name: 'Furia', imagePath: 'images/teams/furia.png'},
+    { name: 'G2 Esport', imagePath: 'images/teams/g2_esport.png'},
+    { name: 'Gentle Mates', imagePath: 'images/teams/gentle_mates.png' },
+    { name: 'GiantX', imagePath: 'images/teams/giantx.png'},
+    { name: 'Karmine Corp', imagePath: 'images/teams/karmine_corp.png' },
+    { name: 'Movistar Koi', imagePath: 'images/teams/movistar_koi.png'},
+    { name: 'Natus Vincere', imagePath: 'images/teams/natus_vincere.png'},
+    { name: 'NRG', imagePath: 'images/teams/nrg.png'},
+    { name: 'Nongshim RedForce', imagePath: 'images/teams/ns_redforce.png'},
+    { name: 'Paper Rex', imagePath: 'images/teams/paper_rex.png'},
+    { name: 'Shifters', imagePath: 'images/teams/shifters.png'},
+    { name: 'SK Gaming', imagePath: 'images/teams/sk_gaming.png'},
+    { name: 'T1', imagePath: 'images/teams/t1.png'},
+    { name: 'Team Heretics', imagePath: 'images/teams/team_heretics.png'},
+    { name: 'Team Liquid', imagePath: 'images/teams/team_liquid.png'},
+    { name: 'Team Vitality', imagePath: 'images/teams/team_vitality.png'},
+    { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png'},
 ];
 
 let firebaseUser;
@@ -132,7 +151,7 @@ db.collection("matchs")
                                         </div>
                                     </div>`
         }
-        const matchForm = document.querySelectorAll(".matchForm").forEach(form => {
+        document.querySelectorAll(".matchForm").forEach(form => {
             form.addEventListener("submit", function(e) {
                 e.preventDefault();
                 const matchId = Number(form.dataset.matchId);
