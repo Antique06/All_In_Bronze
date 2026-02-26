@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/high_bar.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">
+            <img class="imageAccueil" src="images/ALLinBRONZE_logo.png" alt="Retour page de base">
+        </a>
+        <a class="button buttonValorant" href="valorant.html">
+            <span class="actual-text">&nbsp;VALORANT&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;VALORANT&nbsp;</span>
+        </a>
+        <a class="button buttonLOL" href="lol.html">
+            <span class="actual-text">&nbsp;League&nbsp;of&nbsp;Legends&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;League&nbsp;of&nbsp;Legends&nbsp;</span>
+        </a>
+        <a id="matchSigning" class="button buttonMatchSigning" href="matchSigning.html" style="display: none;">
+            <span class="actual-text">&nbsp;Ajout&nbsp;Match&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Ajout&nbsp;Match&nbsp;</span>
+        </a>
+        <a id="resultWriting" class="button buttonResultWriting" href="resultWriting.html" style="display: none;">
+            <span class="actual-text">&nbsp;Ajout&nbsp;Resultat&nbsp;Match&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Ajout&nbsp;Resultat&nbsp;Match&nbsp;</span>
+        </a>
+        <button type="button" id="googleSignBtn" class="btn">
+            <strong id="buttonText">Se connecter</strong>
+            <div id="container-stars">
+                <div id="stars"></div>
+            </div>
+            <div id="glow">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">PRÉDISEZ LES RÉSULTATS ESPORTS</h1>
+            <p class="hero-subtitle">Testez vos connaissances, participez aux classements et affrontez la communauté</p>
+            <a href="#games" class="cta-button">COMMENCER À PRONOSTIQUER</a>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stat-card">
+            <div class="stat-number" id="totalPredictions">0</div>
+            <div class="stat-label">Pronostics Saisis</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="activeMatches">0</div>
+            <div class="stat-label">Matchs à Venir</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="activePlayers">0</div>
+            <div class="stat-label">Joueurs Actifs</div>
+        </div>
+    </div>
+
+    <!-- Games Section -->
+    <div class="games-section" id="games">
+        <h2 class="section-title">CHOISIR UN JEU</h2>
+        <div class="games-grid">
+            <a href="valorant.html" class="game-card game-valorant">
+                <div class="game-card-content">
+                    <h3>VALORANT</h3>
+                    <p id="valorantMatches">-- Matchs</p>
+                    <span class="play-button">→</span>
+                </div>
+            </a>
+            <a href="lol.html" class="game-card game-lol">
+                <div class="game-card-content">
+                    <h3>LEAGUE OF LEGENDS</h3>
+                    <p id="lolMatches">-- Matchs</p>
+                    <span class="play-button">→</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Leaderboard Preview -->
+    <div class="leaderboard-section">
+        <h2 class="section-title">CLASSEMENT GLOBAL</h2>
+        <div class="leaderboard-container">
+            <label for="leaderboardTournament">Sélectionner un tournoi :</label>
+            <select id="leaderboardTournament" class="tournament-select">
+                <option value="">-- aucun --</option>
+            </select>
+            <div id="leaderboardPreview" class="leaderboard-preview">
+                <!-- Contenu injecté par JS -->
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/googleAuth.js"></script>
+    <script src="js/adminDisplay.js"></script>
+</body>

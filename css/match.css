@@ -1,0 +1,296 @@
+.formMatch {
+    display: grid;
+    grid-template-columns: 5% 40% 25% 30%;
+    grid-template-rows: 100px 100px;
+}
+
+.matchForm {
+    display: grid;
+    grid-template-columns: 5% 15% 20% 15% 10% 5% 15% 0%;
+    grid-template-rows: 100px 100px;
+    gap: 20px;
+}
+
+.team1logo {
+    grid-column: 2;
+    grid-row: 1;
+    height: 100px;
+}
+
+.team2logo {
+    grid-column: 2;
+    grid-row: 2;
+    height: 100px;
+}
+
+.team1name {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 250%;
+    color: white;
+    font-family: "Orbitron";
+    display: flex;
+    align-items: center;
+}
+
+.team2name {
+    grid-column: 3;
+    grid-row: 2;
+    font-size: 250%;
+    color: white;
+    font-family: "Orbitron";
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    grid-column: 4;
+    grid-row: 1;
+    font-size: 200%;
+    color: white;
+    font-family: "Orbitron";
+    display: flex;
+    align-items: end;
+}
+
+.hour {
+    grid-column: 4;
+    grid-row: 2;
+    font-size: 300%;
+    color: white;
+    font-family: "Orbitron";
+    display: flex;
+    align-items: start;
+}
+
+.format {
+    grid-column: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    color: white;
+    font-family: "Orbitron";
+    font-size: 500%;
+    display: flex;
+    align-items: center;
+}
+
+.team1prono {
+    grid-column: 6;
+    grid-row: 1;
+}
+
+.team2prono {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+.submit {
+    grid-column: 7;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+
+/* From Uiverse.io by adamgiebl */ 
+.card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+    width: 80%;
+    height: 220px;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+}
+
+.card__content {
+  background: rgb(5, 6, 45);
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* From GitHub Copilot */
+.selectFormat {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: rgba(255,255,255,0.03);
+    color: #ffffff;
+    border: 1px solid rgba(151,65,252,0.55);
+    padding-right: 40%;
+    margin-top: 30%;
+    margin-bottom: 30%;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 180ms ease, border-color 180ms ease, transform 120ms ease;
+    box-shadow: 0 2px 10px rgba(5,6,45,0.6) inset;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23AF40FF' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.selectFormat:focus {
+    border-color: rgba(175,64,255,0.95);
+    box-shadow: 0 0 18px rgba(175,64,255,0.18);
+    transform: translateY(-1px);
+}
+
+.selectFormat[disabled],
+.selectFormat:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.selectFormat option {
+    background-color: rgb(5,6,45);
+    color: #ffffff;
+}
+
+.select-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.select-wrap select {
+    display: inline-block;
+}
+
+.submitPronoValider {
+    background-image: linear-gradient(90deg, #40ff4a 0%, #f313e0 60%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    margin: 30% 0% 30% 20%;
+    font-family: "Orbitron", sans-serif;
+    font-size: 200%;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(91,66,243,0.16);
+    transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+}
+
+.submitPronoModifier {
+    background-image: linear-gradient(90deg, #e5e917 0%, #0c1ada 60%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    margin: 30% 0% 30% 20%;
+    font-family: "Orbitron", sans-serif;
+    font-size: 200%;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(91,66,243,0.16);
+    transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+}
+
+.submitPronoResult {
+    background-image: linear-gradient(90deg, #e91717 0%, #01490d 60%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    margin: 30% 0% 30% 20%;
+    font-family: "Orbitron", sans-serif;
+    font-size: 200%;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(91,66,243,0.16);
+    transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+}
+
+.spanSubmit {
+    background-image: linear-gradient(90deg, #168ae9 0%, #ec8b0c 60%);
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 12px;
+    margin: 30% 0% 30% 20%;
+    font-family: "Orbitron", sans-serif;
+    font-size: 200%;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(91,66,243,0.16);
+    transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+}
+
+.spanTeam1prono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 250%;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    width: 120px;
+    height: 80px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.spanTeam2prono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 250%;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    width: 120px;
+    height: 80px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+
+/* From GitHub Copilot */
+.submitProno:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(91,66,243,0.22);
+}
+
+.submitProno:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(5,6,45,0.6);
+}
+
+.submitProno:focus {
+    outline: none;
+    box-shadow: 0 0 18px rgba(175,64,255,0.16);
+}
+
+.submitProno:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.1);
+}
+
+.tournamentName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-family: "Orbitron", sans-serif;
+    font-size: 300%;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(175, 64, 255, 0.15), rgba(91, 66, 243, 0.15));
+    border-top: 3px solid #AF40FF;
+    border-bottom: 3px solid #00DDEB;
+    padding: 20px 30px;
+    width: 40%;
+    border-radius: 15px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(175, 64, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(175, 64, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 300ms ease;
+}

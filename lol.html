@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/high_bar.css">
+    <link rel="stylesheet" href="css/lol.css">
+    <link rel="stylesheet" href="css/match.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">
+            <img class="imageAccueil" src="images/ALLinBRONZE_logo.png" alt="Retour page de base">
+        </a>
+        <a class="button buttonValorant" href="valorant.html">
+            <span class="actual-text">&nbsp;VALORANT&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;VALORANT&nbsp;</span>
+        </a>
+        <a class="button buttonLOL active" href="lol.html">
+            <span class="actual-text">&nbsp;League&nbsp;of&nbsp;Legends&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;League&nbsp;of&nbsp;Legends&nbsp;</span>
+        </a>
+        <a id="matchSigning" class="button buttonMatchSigning" href="matchSigning.html" style="display: none;">
+            <span class="actual-text">&nbsp;Ajout&nbsp;Match&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Ajout&nbsp;Match&nbsp;</span>
+        </a>
+        <a id="resultWriting" class="button buttonResultWriting" href="resultWriting.html" style="display: none;">
+            <span class="actual-text">&nbsp;Ajout&nbsp;Resultat&nbsp;Match&nbsp;</span>
+            <span aria-hidden="true" class="hover-text">&nbsp;Ajout&nbsp;Resultat&nbsp;Match&nbsp;</span>
+        </a>
+        <button type="button" id="googleSignBtn" class="btn">
+        <strong id="buttonText">Se connecter</strong>
+        <div id="container-stars">
+            <div id="stars"></div>
+        </div>
+
+        <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            </div>
+        </button>
+    </nav>
+
+
+    <div id="matchsPlace">
+
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="js/lol.js"></script>
+    <script src="js/googleAuth.js"></script>
+    <script src="js/adminDisplay.js"></script>
+</body>
+<footer>
+
+</footer>
