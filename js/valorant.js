@@ -127,7 +127,7 @@ db.collection("matchs")
 
             const matchDate = new Date(date + 'T' + time);
             const now = new Date();
-            const oneHourAgo = new Date(now.getTime() - (60*60*1000));
+            const oneHourAgo = new Date(now.getTime() + (60*60*1000));
             if(matchDate<oneHourAgo) { 
                 selectSubmitTeam1 = `<span class="team1prono spanTeam1prono">${pronoTeam1Score}</span>`;
                 selectSubmitTeam2 = `<span class="team2prono spanTeam2prono">${pronoTeam2Score}</span>`;
