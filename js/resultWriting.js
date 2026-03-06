@@ -145,6 +145,8 @@ db.collection("matchs")
                             const prediction = predictionDoc.data();
                             const userId = prediction.userId;
                             let pointsEarned = 0;
+                            let isCorrect = false;
+                            let isPerfect = false;
 
                             const realWinner = team1score > team2score ? "team1" : (team2score > team1score ? "team2" : "draw");
                             
@@ -152,10 +154,21 @@ db.collection("matchs")
 
                             if (prediction.team1score === team1score && prediction.team2score === team2score) {
                                 pointsEarned = 3;
+                                isCorrect = true;
+                                isPerfect = true;
+                                console.log("PERFECT");
                             }
                             else if (realWinner === predictedWinner) {
                                 pointsEarned = 1;
+                                isCorrect = true;
+                                console.log("CORRECT");
                             }
+
+                            // Mettre à jour la prédiction avec les flags
+                            db.collection("predictions").doc(predictionDoc.id).update({
+                                isCorrect: isCorrect,
+                                isPerfect: isPerfect
+                            });
 
                             const docId = `${userId}_${tournamentId}`;
                             db.collection("userTournamentScores")

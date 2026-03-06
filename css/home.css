@@ -58,9 +58,18 @@ body, html {
 }
 
 /* Stats Section */
-.stats-section {
+.stats-section-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.stats-section-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto 80px;

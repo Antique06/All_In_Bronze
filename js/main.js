@@ -49,6 +49,31 @@ async function loadHomeStats() {
         
         const lolSnap = await db.collection('matchs').where('game', '==', 'lol').where('status', '==', 'waiting').get();
         document.getElementById('lolMatches').textContent = lolSnap.size + ' Matchs';
+        
+        // Calcul du taux de pronostics bons et du taux de perfect
+        if (predictionsSnap.size > 0) {
+            let correctPredictions = 0;
+            let perfectPredictions = 0;
+            
+            predictionsSnap.forEach(doc => {
+                const data = doc.data();
+                if (data.isCorrect) {
+                    correctPredictions++;
+                }
+                if (data.isPerfect) {
+                    perfectPredictions++;
+                }
+            });
+            
+            const tauxBon = Math.round((correctPredictions / predictionsSnap.size) * 100);
+            const tauxPerfectCalc = Math.round((perfectPredictions / predictionsSnap.size) * 100);
+            
+            document.getElementById('tauxEquipe').textContent = tauxBon + '%';
+            document.getElementById('tauxPerfect').textContent = tauxPerfectCalc + '%';
+        } else {
+            document.getElementById('tauxEquipe').textContent = '0%';
+            document.getElementById('tauxPerfect').textContent = '0%';
+        }
     } catch (error) {
         console.error('Erreur lors du chargement des stats:', error);
     }
