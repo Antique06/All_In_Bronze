@@ -12,19 +12,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-window.firebaseUser = null;
-
-window.addUser = function(nom, age, email) {
-    db.collection("users").add({
-        nom: nom,
-        age: age,
-        email: email
-    })
-    .catch((error) => {
-        console.error("Erreur :", error);
-        alert("Erreur lors de l'ajout de l'utilisateur !");
-    });
-};
+let firebaseUser;
+firebase.auth().onAuthStateChanged((user) => {
+    firebaseUser = user;
+});
 
 // ===== Home Page Functions =====
 
@@ -34,9 +25,12 @@ async function loadHomeStats() {
         // Total predictions
         const predictionsSnap = await db.collection('predictions').get();
         document.getElementById('totalPredictions').textContent = predictionsSnap.size;
-        
-        // Active matches (status = 'waiting')
-        const matchesSnap = await db.collection('matchs').where('status', '==', 'waiting').get();
+
+        // Total predictions fini
+        const predictionsFinishedSnap = await db.collection('predictions').where('status', '==', 'finished').get();
+
+        // Active matches (status = 'ongoing')
+        const matchesSnap = await db.collection('matchs').where('status', '==', 'ongoing').get();
         document.getElementById('activeMatches').textContent = matchesSnap.size;
         
         // Active players (users with predictions)
@@ -44,19 +38,20 @@ async function loadHomeStats() {
         document.getElementById('activePlayers').textContent = usersSnap.size;
         
         // Matches by game
-        const valorantSnap = await db.collection('matchs').where('game', '==', 'valorant').where('status', '==', 'waiting').get();
+        const valorantSnap = await db.collection('matchs').where('game', '==', 'valorant').where('status', '==', 'ongoing').get();
         document.getElementById('valorantMatches').textContent = valorantSnap.size + ' Matchs';
         
-        const lolSnap = await db.collection('matchs').where('game', '==', 'lol').where('status', '==', 'waiting').get();
+        const lolSnap = await db.collection('matchs').where('game', '==', 'lol').where('status', '==', 'ongoing').get();
         document.getElementById('lolMatches').textContent = lolSnap.size + ' Matchs';
         
-        // Calcul du taux de pronostics bons et du taux de perfect
+        // Calcul du taux de pronostics bons, du taux de perfect et du nombre de matchs finis
         if (predictionsSnap.size > 0) {
             let correctPredictions = 0;
             let perfectPredictions = 0;
             
             predictionsSnap.forEach(doc => {
                 const data = doc.data();
+                
                 if (data.isCorrect) {
                     correctPredictions++;
                 }
@@ -65,15 +60,54 @@ async function loadHomeStats() {
                 }
             });
             
-            const tauxBon = Math.round((correctPredictions / predictionsSnap.size) * 100);
-            const tauxPerfectCalc = Math.round((perfectPredictions / predictionsSnap.size) * 100);
+            const tauxBon = Math.round((correctPredictions / predictionsFinishedSnap.size) * 100);
+            const tauxPerfectCalc = Math.round((perfectPredictions / predictionsFinishedSnap.size) * 100);
             
-            document.getElementById('tauxEquipe').textContent = tauxBon + '%';
-            document.getElementById('tauxPerfect').textContent = tauxPerfectCalc + '%';
+            document.getElementById('tauxCorrecteGenerale').textContent = tauxBon + '%';
+            document.getElementById('tauxPerfectGenerale').textContent = tauxPerfectCalc + '%';
         } else {
-            document.getElementById('tauxEquipe').textContent = '0%';
-            document.getElementById('tauxPerfect').textContent = '0%';
+            document.getElementById('tauxCorrecteGenerale').textContent = '0%';
+            document.getElementById('tauxPerfectGenerale').textContent = '0%';
         }
+
+        if(firebaseUser) {
+            // Total Prediction de l'utilisateur
+            const predictionsByUser = await db.collection('predictions').where("userId", "==", firebaseUser.uid).get();
+            document.getElementById('totalPredictionsUser').textContent = predictionsByUser.size;
+            
+            // Total Prediction fini de l'utilisateur
+            const predictionsFinishByUser = await db.collection('predictions').where("userId", "==", firebaseUser.uid).where("status", "==", "finished").get();
+
+            if (predictionsFinishByUser.size > 0) {
+                let correctPredictionsByUser = 0;
+                let perfectPredictionsByUser = 0;
+                
+                predictionsFinishByUser.forEach(doc => {
+                    const data = doc.data();
+                    
+                    if (data.isCorrect) {
+                        correctPredictionsByUser++;
+                    }
+                    if (data.isPerfect) {
+                        perfectPredictionsByUser++;
+                    }
+                });
+                
+                const tauxBonByUser = Math.round((correctPredictionsByUser / predictionsFinishByUser.size) * 100);
+                const tauxPerfectCalcByUser = Math.round((perfectPredictionsByUser / predictionsFinishByUser.size) * 100);
+
+                document.getElementById('tauxCorrectPerso').textContent = tauxBonByUser + '%';
+                document.getElementById('tauxPerfectPerso').textContent = tauxPerfectCalcByUser + '%';
+            } else {
+                document.getElementById('tauxCorrectPerso').textContent = '0%';
+                document.getElementById('tauxPerfectPerso').textContent = '0%';
+            }
+
+        } else {
+            document.getElementById('tauxCorrectPerso').textContent = "Not logged";
+            document.getElementById('tauxPerfectPerso').textContent = "Not logged";
+        }
+
     } catch (error) {
         console.error('Erreur lors du chargement des stats:', error);
     }

@@ -63,7 +63,7 @@ function handleAddMatch(e) {
     const format = document.getElementById("formFormat").value;
     const date = document.getElementById("formDate").value;
     const time = document.getElementById("formTime").value;
-    const status = "waiting";
+    const status = "ongoing";
 
     
     let tournament = document.getElementById("selectTournament").value;

@@ -44,7 +44,7 @@ firebase.auth().onAuthStateChanged((user) => {
 const matchsPlace = document.getElementById("matchsPlace");
 
 db.collection("matchs")
-    .where("status", "==", "waiting")
+    .where("status", "==", "ongoing")
     .orderBy("date")
     .orderBy("time")
     .get()
@@ -167,7 +167,8 @@ db.collection("matchs")
                             // Mettre à jour la prédiction avec les flags
                             db.collection("predictions").doc(predictionDoc.id).update({
                                 isCorrect: isCorrect,
-                                isPerfect: isPerfect
+                                isPerfect: isPerfect,
+                                status: "finished"
                             });
 
                             const docId = `${userId}_${tournamentId}`;

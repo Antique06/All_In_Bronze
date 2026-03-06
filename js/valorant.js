@@ -45,7 +45,7 @@ const matchsPlace = document.getElementById("matchsPlace");
 
 db.collection("matchs")
     .where("game", "==", "valorant")
-    .where("status", "==", "waiting")
+    .where("status", "==", "ongoing")
     .orderBy("date")
     .orderBy("time")
     .get()

@@ -45,7 +45,7 @@ const matchsPlace = document.getElementById("matchsPlace");
 
 db.collection("matchs")
     .where("game", "==", "lol")
-    .where("status", "==", "waiting")
+    .where("status", "==", "ongoing")
     .orderBy("date")
     .orderBy("time")
     .get()
@@ -173,6 +173,7 @@ db.collection("matchs")
                                     userId: userId,
                                     team1score: team1score,
                                     team2score: team2score,
+                                    status: "ongoing"
                                 })
                                 .then(() => {
                                     alert("Votre prediction a bien été prise en compte !");
