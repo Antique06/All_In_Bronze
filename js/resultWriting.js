@@ -12,35 +12,41 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 const teams = [
-    { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png'},
-    { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png'},
-    { name: 'BiliBili Gaming', imagePath: 'images/teams/bilibili_gaming.png'},
-    { name: 'EDward Gaming', imagePath: 'images/teams/edward_gaming.png'},
-    { name: 'FearX', imagePath: 'images/teams/fearx.png'},
-    { name: 'Fnatic', imagePath: 'images/teams/fnatic.png'},
-    { name: 'Furia', imagePath: 'images/teams/furia.png'},
-    { name: 'G2 Esport', imagePath: 'images/teams/g2_esport.png'},
-    { name: 'GenG', imagePath: 'images/teams/geng.png'},
+    { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png' },
+    { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png' },
+    { name: 'BiliBili Gaming', imagePath: 'images/teams/bilibili_gaming.png' },
+    { name: 'EDward Gaming', imagePath: 'images/teams/edward_gaming.png' },
+    { name: 'FearX', imagePath: 'images/teams/fearx.png' },
+    { name: 'Fnatic', imagePath: 'images/teams/fnatic.png' },
+    { name: 'Furia', imagePath: 'images/teams/furia.png' },
+    { name: 'FUT esport', imagePath: 'images/teams/fut_esport.png' },
+    { name: 'G2 Esport', imagePath: 'images/teams/g2_esport.png' },
+    { name: 'GenG', imagePath: 'images/teams/geng.png' },
     { name: 'Gentle Mates', imagePath: 'images/teams/gentle_mates.png' },
-    { name: 'GiantX', imagePath: 'images/teams/giantx.png'},
-    { name: 'JD Gaming', imagePath: 'images/teams/jd_gaming.png'},
+    { name: 'GiantX', imagePath: 'images/teams/giantx.png' },
+    { name: 'JD Gaming', imagePath: 'images/teams/jd_gaming.png' },
     { name: 'Karmine Corp', imagePath: 'images/teams/karmine_corp.png' },
     { name: 'LOUD', imagePath: 'images/teams/loud.png' },
     { name: 'LYON', imagePath: 'images/teams/lyon.png' },
-    { name: 'Movistar Koi', imagePath: 'images/teams/movistar_koi.png'},
-    { name: 'Natus Vincere', imagePath: 'images/teams/natus_vincere.png'},
-    { name: 'NRG', imagePath: 'images/teams/nrg.png'},
-    { name: 'Nongshim RedForce', imagePath: 'images/teams/ns_redforce.png'},
-    { name: 'Paper Rex', imagePath: 'images/teams/paper_rex.png'},
-    { name: 'Secret Whales', imagePath: 'images/teams/secret_whales.png'},
-    { name: 'Shifters', imagePath: 'images/teams/shifters.png'},
-    { name: 'SK Gaming', imagePath: 'images/teams/sk_gaming.png'},
-    { name: 'T1', imagePath: 'images/teams/t1.png'},
-    { name: 'Team Heretics', imagePath: 'images/teams/team_heretics.png'},
-    { name: 'Team Liquid', imagePath: 'images/teams/team_liquid.png'},
-    { name: 'Team Vitality', imagePath: 'images/teams/team_vitality.png'},
-    { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png'},
+    { name: 'Movistar Koi', imagePath: 'images/teams/movistar_koi.png' },
+    { name: 'Natus Vincere', imagePath: 'images/teams/natus_vincere.png' },
+    { name: 'NRG', imagePath: 'images/teams/nrg.png' },
+    { name: 'Nongshim RedForce', imagePath: 'images/teams/ns_redforce.png' },
+    { name: 'Paper Rex', imagePath: 'images/teams/paper_rex.png' },
+    { name: 'PCIFIC', imagePath: 'images/teams/pcific.png' },
+    { name: 'Secret Whales', imagePath: 'images/teams/secret_whales.png' },
+    { name: 'Shifters', imagePath: 'images/teams/shifters.png' },
+    { name: 'SK Gaming', imagePath: 'images/teams/sk_gaming.png' },
+    { name: 'T1', imagePath: 'images/teams/t1.png' },
+    { name: 'Team Heretics', imagePath: 'images/teams/team_heretics.png' },
+    { name: 'Team Liquid', imagePath: 'images/teams/team_liquid.png' },
+    { name: 'Team Vitality', imagePath: 'images/teams/team_vitality.png' },
+    { name: 'ULF esport', imagePath: 'images/teams/ulf_esport.png' },
+    { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png' },
 ];
 
 let firebaseUser;
@@ -57,12 +63,12 @@ db.collection("matchs")
     .get()
     .then(async (snapshot) => {
         let tournamentId = "";
-        for(const doc of snapshot.docs) {
-            if(tournamentId != doc.data().tournamentId) {
+        for (const doc of snapshot.docs) {
+            if (tournamentId != doc.data().tournamentId) {
                 tournamentId = doc.data().tournamentId;
                 const snapshot2 = await db.collection("tournaments")
-                                            .where("tournamentId", "==", tournamentId)
-                                            .get()
+                    .where("tournamentId", "==", tournamentId)
+                    .get()
                 snapshot2.forEach((doc2) => {
                     matchsPlace.innerHTML += `<span class="tournamentName"> ` + doc2.data().tournamentName + ` </span>`;
                 });
@@ -75,27 +81,27 @@ db.collection("matchs")
             const matchId = doc.data().matchId;
 
             let team1logo = "images/teams/noLogo.png";
-            if(teams.find(t => t.name === team1name)) {
+            if (teams.find(t => t.name === team1name)) {
                 team1logo = teams.find(t => t.name === team1name).imagePath;
             }
             let team2logo = "images/teams/noLogo.png";
-            if(teams.find(t => t.name === team2name)) {
+            if (teams.find(t => t.name === team2name)) {
                 team2logo = teams.find(t => t.name === team2name).imagePath;
             }
 
-            const halfFormat = Math.ceil(+format[2] / 2)+1;
-            
+            const halfFormat = Math.ceil(+format[2] / 2) + 1;
+
             let team1pronoOption = '';
-            for(let i=0; i<halfFormat; i++) {
+            for (let i = 0; i < halfFormat; i++) {
                 team1pronoOption += '<option value ="' + i + '">' + i + "</option>";
             }
 
             let team2pronoOption = '';
-            for(let i=0; i<halfFormat; i++) {
+            for (let i = 0; i < halfFormat; i++) {
                 team2pronoOption += '<option value ="' + i + '">' + i + "</option>";
             }
 
-            matchsPlace.innerHTML+=`<div class="card">
+            matchsPlace.innerHTML += `<div class="card">
                                         <div class="card__content">
                                             <form class="matchForm" data-match-id=${matchId} data-tournament-id=${tournamentId}>
                                                 <img src="${team1logo}" class="team1logo">
@@ -118,7 +124,7 @@ db.collection("matchs")
         }
 
         document.querySelectorAll(".matchForm").forEach(form => {
-            form.addEventListener("submit", function(e) {
+            form.addEventListener("submit", function (e) {
                 e.preventDefault();
                 const matchId = Number(form.dataset.matchId);
                 const tournamentId = Number(form.dataset.tournamentId);
@@ -156,7 +162,7 @@ db.collection("matchs")
                             let isPerfect = false;
 
                             const realWinner = team1score > team2score ? "team1" : (team2score > team1score ? "team2" : "draw");
-                            
+
                             const predictedWinner = prediction.team1score > prediction.team2score ? "team1" : (prediction.team2score > prediction.team1score ? "team2" : "draw");
 
                             if (prediction.team1score === team1score && prediction.team2score === team2score) {

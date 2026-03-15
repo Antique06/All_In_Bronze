@@ -15,35 +15,41 @@ const firebaseConfig = {
     measurementId: "G-JWCY1VF0BW"
 };
 
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 const teams = [
-    { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png'},
-    { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png'},
-    { name: 'BiliBili Gaming', imagePath: 'images/teams/bilibili_gaming.png'},
-    { name: 'EDward Gaming', imagePath: 'images/teams/edward_gaming.png'},
-    { name: 'FearX', imagePath: 'images/teams/fearx.png'},
-    { name: 'Fnatic', imagePath: 'images/teams/fnatic.png'},
-    { name: 'Furia', imagePath: 'images/teams/furia.png'},
-    { name: 'G2 Esport', imagePath: 'images/teams/g2_esport.png'},
-    { name: 'GenG', imagePath: 'images/teams/geng.png'},
+    { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png' },
+    { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png' },
+    { name: 'BiliBili Gaming', imagePath: 'images/teams/bilibili_gaming.png' },
+    { name: 'EDward Gaming', imagePath: 'images/teams/edward_gaming.png' },
+    { name: 'FearX', imagePath: 'images/teams/fearx.png' },
+    { name: 'Fnatic', imagePath: 'images/teams/fnatic.png' },
+    { name: 'Furia', imagePath: 'images/teams/furia.png' },
+    { name: 'FUT esport', imagePath: 'images/teams/fut_esport.png' },
+    { name: 'G2 Esport', imagePath: 'images/teams/g2_esport.png' },
+    { name: 'GenG', imagePath: 'images/teams/geng.png' },
     { name: 'Gentle Mates', imagePath: 'images/teams/gentle_mates.png' },
-    { name: 'GiantX', imagePath: 'images/teams/giantx.png'},
-    { name: 'JD Gaming', imagePath: 'images/teams/jd_gaming.png'},
+    { name: 'GiantX', imagePath: 'images/teams/giantx.png' },
+    { name: 'JD Gaming', imagePath: 'images/teams/jd_gaming.png' },
     { name: 'Karmine Corp', imagePath: 'images/teams/karmine_corp.png' },
     { name: 'LOUD', imagePath: 'images/teams/loud.png' },
     { name: 'LYON', imagePath: 'images/teams/lyon.png' },
-    { name: 'Movistar Koi', imagePath: 'images/teams/movistar_koi.png'},
-    { name: 'Natus Vincere', imagePath: 'images/teams/natus_vincere.png'},
-    { name: 'NRG', imagePath: 'images/teams/nrg.png'},
-    { name: 'Nongshim RedForce', imagePath: 'images/teams/ns_redforce.png'},
-    { name: 'Paper Rex', imagePath: 'images/teams/paper_rex.png'},
-    { name: 'Secret Whales', imagePath: 'images/teams/secret_whales.png'},
-    { name: 'Shifters', imagePath: 'images/teams/shifters.png'},
-    { name: 'SK Gaming', imagePath: 'images/teams/sk_gaming.png'},
-    { name: 'T1', imagePath: 'images/teams/t1.png'},
-    { name: 'Team Heretics', imagePath: 'images/teams/team_heretics.png'},
-    { name: 'Team Liquid', imagePath: 'images/teams/team_liquid.png'},
-    { name: 'Team Vitality', imagePath: 'images/teams/team_vitality.png'},
-    { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png'},
+    { name: 'Movistar Koi', imagePath: 'images/teams/movistar_koi.png' },
+    { name: 'Natus Vincere', imagePath: 'images/teams/natus_vincere.png' },
+    { name: 'NRG', imagePath: 'images/teams/nrg.png' },
+    { name: 'Nongshim RedForce', imagePath: 'images/teams/ns_redforce.png' },
+    { name: 'Paper Rex', imagePath: 'images/teams/paper_rex.png' },
+    { name: 'PCIFIC', imagePath: 'images/teams/pcific.png' },
+    { name: 'Secret Whales', imagePath: 'images/teams/secret_whales.png' },
+    { name: 'Shifters', imagePath: 'images/teams/shifters.png' },
+    { name: 'SK Gaming', imagePath: 'images/teams/sk_gaming.png' },
+    { name: 'T1', imagePath: 'images/teams/t1.png' },
+    { name: 'Team Heretics', imagePath: 'images/teams/team_heretics.png' },
+    { name: 'Team Liquid', imagePath: 'images/teams/team_liquid.png' },
+    { name: 'Team Vitality', imagePath: 'images/teams/team_vitality.png' },
+    { name: 'ULF esport', imagePath: 'images/teams/ulf_esport.png' },
+    { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png' },
 ];
 
 firebase.initializeApp(firebaseConfig);
@@ -56,15 +62,15 @@ addMatchForm.addEventListener("submit", handleAddMatch)
 
 function handleAddMatch(e) {
     e.preventDefault();
-    let matchId = (Date.now() / (Math.random()*Math.random()) + Math.random());
+    let matchId = (Date.now() / (Math.random() * Math.random()) + Math.random());
     matchId = Math.round(matchId);
     const game = document.getElementById("formGame").value;
     let team1name = document.getElementById("preTeams1").value;
-    if(team1name==="autre") {
+    if (team1name === "autre") {
         team1name = document.getElementById("formTeam1Name").value;
     }
     let team2name = document.getElementById("preTeams2").value;
-    if(team2name==="autre") {
+    if (team2name === "autre") {
         team2name = document.getElementById("formTeam2Name").value;
     }
     const format = document.getElementById("formFormat").value;
@@ -72,11 +78,11 @@ function handleAddMatch(e) {
     const time = document.getElementById("formTime").value;
     const status = "ongoing";
 
-    
+
     let tournament = document.getElementById("selectTournament").value;
     let tournamentId = parseInt(tournament, 10);
-    if(tournament==="autre") {
-        tournamentId = (Date.now() / (Math.random()*Math.random()) + Math.random());
+    if (tournament === "autre") {
+        tournamentId = (Date.now() / (Math.random() * Math.random()) + Math.random());
         tournamentId = Math.round(tournamentId);
         tournament = document.getElementById("inputTournament").value;
         addTournament(tournamentId, tournament, game);
@@ -97,18 +103,18 @@ function addMatch(matchId, game, tournamentId, team1name, team2name, format, dat
         time: time,
         status: status,
     })
-    .then(() => {
-        addMatchForm.reset();
-        document.getElementById("imgTeam1").setAttribute("src", 'images/teams/noLogo.png');
-        document.getElementById("imgTeam2").setAttribute("src", 'images/teams/noLogo.png');
-        formTeam1Name.setAttribute("style", "");
-        formTeam2Name.setAttribute("style", "");
-        modifSelectTournament("valorant");
-    })
-    .catch((error) => {
-        console.error("Erreur :", error);
-        alert("Erreur lors de l'ajout du match !");
-    });
+        .then(() => {
+            addMatchForm.reset();
+            document.getElementById("imgTeam1").setAttribute("src", 'images/teams/noLogo.png');
+            document.getElementById("imgTeam2").setAttribute("src", 'images/teams/noLogo.png');
+            formTeam1Name.setAttribute("style", "");
+            formTeam2Name.setAttribute("style", "");
+            modifSelectTournament("valorant");
+        })
+        .catch((error) => {
+            console.error("Erreur :", error);
+            alert("Erreur lors de l'ajout du match !");
+        });
 }
 
 function addTournament(tournamentId, tournamentName, game) {
@@ -117,19 +123,19 @@ function addTournament(tournamentId, tournamentName, game) {
         tournamentName: tournamentName,
         game: game,
     })
-    .catch((error) => {
-        console.error("Erreur :", error);
-        alert("Erreur lors de l'ajout du tournoi !");
-    });
+        .catch((error) => {
+            console.error("Erreur :", error);
+            alert("Erreur lors de l'ajout du tournoi !");
+        });
 }
 
 teams.forEach((item) => {
     preTeams1.innerHTML += '<option value="' + item.name + '"> ' + item.name + ' </option>';
 });
-preTeams1.addEventListener("change", function() {
+preTeams1.addEventListener("change", function () {
     const value = this.value;
     const img = document.getElementById("imgTeam1");
-    if(value==="autre") {
+    if (value === "autre") {
         img.setAttribute("src", 'images/teams/noLogo.png');
         formTeam1Name.setAttribute("style", "");
     } else {
@@ -142,10 +148,10 @@ preTeams1.addEventListener("change", function() {
 teams.forEach((item) => {
     preTeams2.innerHTML += '<option value="' + item.name + '"> ' + item.name + ' </option>';
 });
-preTeams2.addEventListener("change", function() {
+preTeams2.addEventListener("change", function () {
     const value = this.value;
     const img = document.getElementById("imgTeam2");
-    if(value==="autre") {
+    if (value === "autre") {
         img.setAttribute("src", 'images/teams/noLogo.png');
         formTeam2Name.setAttribute("style", "");
     } else {
@@ -167,17 +173,17 @@ function modifSelectTournament(game) {
         });
 }
 
-selectTournament.addEventListener("change", function() {
+selectTournament.addEventListener("change", function () {
     const value = this.value;
     const input = document.getElementById("inputTournament");
-    if(value=="autre") {
+    if (value == "autre") {
         input.setAttribute("style", "");
     } else {
         input.setAttribute("style", "display: none;");
     }
 });
 
-selectGame.addEventListener("change", function() {
+selectGame.addEventListener("change", function () {
     const value = this.value;
     selectTournament.innerHTML = '<option value="autre"> Autre (à renseigner manuellement) </option>';
     modifSelectTournament(value);
