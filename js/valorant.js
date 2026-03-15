@@ -12,9 +12,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 const teams = [
     { name: 'All Gamers', imagePath: 'images/teams/all_gamers.png' },
     { name: 'BBL Esport', imagePath: 'images/teams/bbl_esport.png' },

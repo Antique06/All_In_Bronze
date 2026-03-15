@@ -52,9 +52,6 @@ const teams = [
     { name: 'XLG Esport', imagePath: 'images/teams/xlg_esport.png' },
 ];
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 const selectTournament = document.getElementById("selectTournament");
 const selectGame = document.getElementById("formGame");
 
